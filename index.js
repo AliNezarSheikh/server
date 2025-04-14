@@ -16,10 +16,14 @@ app.use(express.json());
 app.post('/submit-to-google-form', async (req, res) => {
   try {
     const formData = req.body;
+    console.log('Data received from Flutter:', formData); // Log what Flutter sends
+
+    const urlEncodedData = new URLSearchParams(formData).toString();
+    console.log('Data being sent to Google Forms:', urlEncodedData); // Log what's sent to Google
 
     const googleFormResponse = await axios.post(
       'https://docs.google.com/forms/u/0/d/e/1FAIpQLSduH0brWcd9nAcOz942P_Z7hjYmVerP2XSMHKlHrYJXTw1jhA/formResponse',
-      new URLSearchParams(formData).toString(),// Convert to form-urlencoded
+      urlEncodedData,// Convert to form-urlencoded
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
