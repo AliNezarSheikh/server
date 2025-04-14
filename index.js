@@ -16,7 +16,8 @@ app.use(express.json());
 app.post('/submit-to-google-form', async (req, res) => {
   try {
     const formData = req.body;
-    console.log('Data received from Flutter:', formData); // Log what Flutter sends
+    console.log('Data received from Flutter:', formData); 
+     console.log('try:');// Log what Flutter sends
 
     const urlEncodedData = new URLSearchParams(formData).toString();
     console.log('Data being sent to Google Forms:', urlEncodedData); // Log what's sent to Google
