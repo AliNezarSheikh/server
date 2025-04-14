@@ -22,7 +22,7 @@ app.post('/submit-to-google-form', async (req, res) => {
       qs.stringify(formData),// Convert to form-urlencoded
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
       }
     );
