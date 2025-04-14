@@ -3,10 +3,15 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+
 
 app.use(express.json());
 app.use(cors());
+const qs = require('qs'); // For URL encoding
+const port = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
 
 app.post('/submit-to-google-form', async (req, res) => {
   try {
@@ -14,7 +19,7 @@ app.post('/submit-to-google-form', async (req, res) => {
 
     const googleFormResponse = await axios.post(
       'https://docs.google.com/forms/u/0/d/e/1FAIpQLSduH0brWcd9nAcOz942P_Z7hjYmVerP2XSMHKlHrYJXTw1jhA/formResponse',
-      new URLSearchParams(formData).toString(), // Convert to form-urlencoded
+      qs.stringify(formData),// Convert to form-urlencoded
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
