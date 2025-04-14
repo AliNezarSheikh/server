@@ -19,7 +19,7 @@ app.post('/submit-to-google-form', async (req, res) => {
 
     const googleFormResponse = await axios.post(
       'https://docs.google.com/forms/u/0/d/e/1FAIpQLSduH0brWcd9nAcOz942P_Z7hjYmVerP2XSMHKlHrYJXTw1jhA/formResponse',
-      formData,// Convert to form-urlencoded
+      new URLSearchParams(formData).toString(),// Convert to form-urlencoded
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
